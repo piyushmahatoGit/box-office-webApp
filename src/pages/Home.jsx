@@ -1,38 +1,29 @@
 import { useState } from "react";
 import { searchForShows, searchForPeople } from "../api/tvmade";
+import SearchForm from "../components/SearchForm";
 
 
 const Home = () => {
-    const [searchStr, setsearchStr] = useState("");
     const [apiData, setApiData] = useState(null);
     const [apiDataError, setApiDataError] = useState(null);
-    const [searchOption, setSearchOption] = useState("shows");
 
 
 
-
-    // setting search string 
-    const onInputChange = (event) => {
-        setsearchStr(event.target.value)
-    }
-
-    const onRadioChange = (event) => {
-        setSearchOption(event.target.value);
-    }
-
-    const onSearch = async (event) => {
+    const onSearch = async ({ searchStr, searchOption }) => {
         setApiDataError(null);
 
         // prevent from default action
-        event.preventDefault();
+        let result;
+
         try {
             if (searchOption === 'shows') {
-                const result = await searchForShows(searchStr);
-                setApiData(result);
+                result = await searchForShows(searchStr);
+
             } else {
-                const result = await searchForPeople(searchStr);
-                setApiData(result);
+                result = await searchForPeople(searchStr);
+
             }
+            setApiData(result);
         } catch (error) {
             setApiDataError(error)
         }
@@ -64,20 +55,9 @@ const Home = () => {
     // user view
     return (
         <div>
-            <form onSubmit={onSearch}>
-                <input type="text" onChange={onInputChange} value={searchStr} />
-                <button type="submit">Search</button>
-
-                <label>
-                    Shows
-                    <input type="radio" name="search-option" value="shows" checked={searchOption === 'shows'} onChange={onRadioChange} />
-                </label>
-                <label>
-                    Actors
-                    <input type="radio" name="search-option" value="actors" checked={searchOption === 'actors'} onChange={onRadioChange} />
-                </label>
-            </form>
-
+            <SearchForm
+                onSearch={onSearch}
+            />
             <div>
                 {renderApiData()}
             </div>
