@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { searchForShows, searchForPeople } from "../api/tvmade";
 import SearchForm from "../components/SearchForm";
+import ShowGrid from "../components/shows/ShowGrid";
+import ActorsGrid from "../components/actors/ActorsGrid";
 
 
 const Home = () => {
@@ -37,16 +39,13 @@ const Home = () => {
             return <div>Error : {apiDataError.message}</div>
         }
         // checking data 
-
-        if (apiData) {
-            return apiData[0].show ? apiData.map(data => (
-                <div key={data.show.id}>{data.show.name}</div>
-            )) : apiData.map(data => (
-                <div key={data.person.id}>{data.person.name}</div>
-            ));
+        if (apiData?.length === 0) {
+            return <div>no result</div>
         }
 
-
+        if (apiData) {
+            return apiData[0].show ? <ShowGrid apiData={apiData} /> : <ActorsGrid apiData={apiData} />;
+        }
         return null;
     }
 
