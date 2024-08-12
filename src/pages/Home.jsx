@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useQuery } from '@tanstack/react-query'
 import { searchForShows, searchForPeople } from "../api/tvmade";
 import SearchForm from "../components/SearchForm";
 import ShowGrid from "../components/shows/ShowGrid";
@@ -6,29 +7,39 @@ import ActorsGrid from "../components/actors/ActorsGrid";
 
 
 const Home = () => {
-    const [apiData, setApiData] = useState(null);
-    const [apiDataError, setApiDataError] = useState(null);
+
+    const [filter, setFilter] = useState(null);
+    const { data: apiData, error: apiDataError } = useQuery({
+        queryKey: ['search', filter],
+        queryFn: () => filter.searchOption === 'shows' ? searchForShows(filter.searchStr) : searchForPeople(filter.searchStr),
+        enabled: !!filter,
+        refetchOnWindowFocus: false
+    })
+    // const [apiData, setApiData] = useState(null);
+    // const [apiDataError, setApiDataError] = useState(null);
+
+
 
 
 
     const onSearch = async ({ searchStr, searchOption }) => {
-        setApiDataError(null);
+        setFilter({ searchStr, searchOption });
 
-        // prevent from default action
-        let result;
+        // // prevent from default action
+        // let result;
 
-        try {
-            if (searchOption === 'shows') {
-                result = await searchForShows(searchStr);
+        // try {
+        //     if (searchOption === 'shows') {
+        //         result = await searchForShows(searchStr);
 
-            } else {
-                result = await searchForPeople(searchStr);
+        //     } else {
+        //         result = await searchForPeople(searchStr);
 
-            }
-            setApiData(result);
-        } catch (error) {
-            setApiDataError(error)
-        }
+        //     }
+        //     setApiData(result);
+        // } catch (error) {
+        //     setApiDataError(error)
+        // }
     }
 
 
