@@ -4,7 +4,7 @@ const Cast = ({ cast }) => {
         {
             cast.map((item) => <div key={item.person.id}>
                 <img src={item.person.image ? item.person.image.medium : "Not Found"} />
-                <p>{item.person.name}</p>
+                <p>{item.person.name} | {item.character.name}</p>
             </div>)
         }
     </div>
