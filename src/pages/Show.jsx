@@ -2,6 +2,8 @@
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from "react-router-dom";
 import { getShowById } from "../api/tvmade";
+import ShowMainData from '../components/shows/ShowMainData';
+import Details from '../components/shows/Details';
 
 // const useShowById = (showId) => {
 //     const [showData, setShowData] = useState(null);
@@ -35,7 +37,21 @@ const Show = () => {
     }
 
     if (showData) {
-        return <div>Showing {showData.name}</div>
+        return <div>
+            <ShowMainData
+                image={showData.image ? showData.image.original : "No image found"}
+                name={showData.name}
+                language={showData.language}
+                rating={showData.rating.average}
+                summary={showData.summary}
+                genres={showData.genres}
+            />
+            <Details
+                status={showData.status}
+                premiered={showData.premiered}
+                network={showData.network}
+            />
+        </div>
     }
 
     return <div>Loading... </div>
