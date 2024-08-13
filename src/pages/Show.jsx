@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { getShowById } from "../api/tvmade";
 import ShowMainData from '../components/shows/ShowMainData';
 import Details from '../components/shows/Details';
+import Seasons from '../components/shows/Seasons';
+import Cast from '../components/shows/Cast';
 
 // const useShowById = (showId) => {
 //     const [showData, setShowData] = useState(null);
@@ -51,6 +53,11 @@ const Show = () => {
                 premiered={showData.premiered}
                 network={showData.network}
             />
+            <Seasons
+                seasons={showData._embedded.seasons}
+            />
+            <Cast cast={showData._embedded.cast} />
+
         </div>
     }
 

@@ -6,7 +6,10 @@ const ShowMainData = ({ image, name, language, rating, summary, genres }) => {
         <p dangerouslySetInnerHTML={
             { __html: summary }
         } />
-        <div>{genres.map((genre) => <span key={genres}>{genre} </span>)}</div>
+        <div>
+            {genres.map((genre) => <span key={genre}>{genre} </span>)}
+        </div>
+
     </div>
 }
 
