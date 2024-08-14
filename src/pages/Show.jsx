@@ -1,6 +1,6 @@
 // import { useEffect, useState } from "react";
 import { useQuery } from '@tanstack/react-query'
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getShowById } from "../api/tvmade";
 import ShowMainData from '../components/shows/ShowMainData';
 import Details from '../components/shows/Details';
@@ -39,26 +39,28 @@ const Show = () => {
     }
 
     if (showData) {
-        return <div>
-            <ShowMainData
-                image={showData.image ? showData.image.original : "No image found"}
-                name={showData.name}
-                language={showData.language}
-                rating={showData.rating.average}
-                summary={showData.summary}
-                genres={showData.genres}
-            />
-            <Details
-                status={showData.status}
-                premiered={showData.premiered}
-                network={showData.network}
-            />
-            <Seasons
-                seasons={showData._embedded.seasons}
-            />
-            <Cast cast={showData._embedded.cast} />
+        return (
+            <div>
+                <Link to="/">Go Back</Link>
+                <ShowMainData
+                    image={showData.image ? showData.image.original : "No image found"}
+                    name={showData.name}
+                    language={showData.language}
+                    rating={showData.rating.average}
+                    summary={showData.summary}
+                    genres={showData.genres}
+                />
+                <Details
+                    status={showData.status}
+                    premiered={showData.premiered}
+                    network={showData.network}
+                />
+                <Seasons
+                    seasons={showData._embedded.seasons}
+                />
+                <Cast cast={showData._embedded.cast} />
 
-        </div>
+            </div>)
     }
 
     return <div>Loading... </div>
