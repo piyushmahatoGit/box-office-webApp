@@ -12,12 +12,12 @@ Box-Office is a web application where users can search for movies and actors by 
 ## Technologies Used
 
 - Frontend: React.js
-- External APIs: [Name of the movie database API used]
-- Hosting: [e.g., surge]
+- External APIs: tvmaze.com
+- Hosting: surge
 
 ## Usage
 
-1. Open your browser and go to `http://localhost:3000`.
+1. Open your browser and go to ``.
 2. Use the search bar to find movies or actors by name.
 3. Click on a movie or actor from the search results to view detailed information.
 
