@@ -18,8 +18,8 @@ const ShowGrid = ({ apiData }) => {
 
     }
 
-    return <div>{
-        apiData.map(data =>
+    return <div>
+        {apiData.map(data =>
             <ShowCard
                 key={data.show.id}
                 id={data.show.id}
@@ -29,7 +29,7 @@ const ShowGrid = ({ apiData }) => {
                 starmeClick={starmeClick}
                 isStarred={starredShows.includes(data.show.id)}
             />)
-    }</div>
+        }</div>
 }
 
 export default ShowGrid;
