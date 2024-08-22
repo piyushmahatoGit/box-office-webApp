@@ -1,25 +1,24 @@
 # Box-Office
 
-Box-Office is a web application where users can search for movies and actors by name. This application fetches data from an external movie database API to provide detailed information about movies and actors.
+Box-Office is a web application where users can search for movies and actors by name. This application fetches data from an external movie database API named as "tvmaze" to provide information about movies.
 
 ## Features
 
 - Search for movies by name
 - Search for actors by name
 - View detailed information about movies, including cast, crew, and reviews
-- View detailed information about actors, including filmography and biography
 
 ## Technologies Used
 
-- Frontend: React.js
+- Frontend: React
 - External APIs: tvmaze.com
-- Hosting: surge
+- Hosting: github pages
 
 ## Usage
 
-1. Open your browser and go to ``.
+1. Open your browser and go to `https://piyushmahatogit.github.io/box-office-webApp/`.
 2. Use the search bar to find movies or actors by name.
-3. Click on a movie or actor from the search results to view detailed information.
+3. Click on a movie from the search results to view detailed information.
 
 ## Contributing
 
