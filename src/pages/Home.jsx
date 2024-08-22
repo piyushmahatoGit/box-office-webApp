@@ -4,6 +4,7 @@ import { searchForShows, searchForPeople } from "../api/tvmade";
 import SearchForm from "../components/SearchForm";
 import ShowGrid from "../components/shows/ShowGrid";
 import ActorsGrid from "../components/actors/ActorsGrid";
+import { TextCenter } from "../components/common/TextCenter";
 
 const Home = () => {
 
@@ -46,11 +47,11 @@ const Home = () => {
     const renderApiData = () => {
         // checking the error
         if (apiDataError) {
-            return <div>Error : {apiDataError.message}</div>
+            return <TextCenter>Error : {apiDataError.message}</TextCenter>
         }
         // checking data 
         if (apiData?.length === 0) {
-            return <div>no result</div>
+            return <TextCenter>no result</TextCenter>
         }
 
         if (apiData) {

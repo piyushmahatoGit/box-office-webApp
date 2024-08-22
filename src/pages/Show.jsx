@@ -6,6 +6,8 @@ import ShowMainData from '../components/shows/ShowMainData';
 import Details from '../components/shows/Details';
 import Seasons from '../components/shows/Seasons';
 import Cast from '../components/shows/Cast';
+import styled from 'styled-components';
+import { TextCenter } from '../components/common/TextCenter';
 
 // const useShowById = (showId) => {
 //     const [showData, setShowData] = useState(null);
@@ -40,8 +42,10 @@ const Show = () => {
 
     if (showData) {
         return (
-            <div>
-                <Link to="/">Go Back</Link>
+            <ShowPageWrapper>
+                <BackHomeWrapper>
+                    <Link to="/">Go Back</Link>
+                </BackHomeWrapper>
                 <ShowMainData
                     image={showData.image ? showData.image.original : "No image found"}
                     name={showData.name}
@@ -50,20 +54,61 @@ const Show = () => {
                     summary={showData.summary}
                     genres={showData.genres}
                 />
-                <Details
-                    status={showData.status}
-                    premiered={showData.premiered}
-                    network={showData.network}
-                />
-                <Seasons
-                    seasons={showData._embedded.seasons}
-                />
-                <Cast cast={showData._embedded.cast} />
+                <InfoBlock>
+                    <h2>Details</h2>
+                    <Details
+                        status={showData.status}
+                        premiered={showData.premiered}
+                        network={showData.network}
+                    />
+                </InfoBlock>
 
-            </div>)
+                <InfoBlock>
+                    <h2>Seasons</h2>
+                    <Seasons
+                        seasons={showData._embedded.seasons} />
+                </InfoBlock>
+
+                <InfoBlock>
+                    <h2>Cast</h2>
+                    <Cast cast={showData._embedded.cast} />
+                </InfoBlock>
+
+            </ShowPageWrapper>)
     }
 
-    return <div>Loading... </div>
+    return <TextCenter>Loading... </TextCenter>
 }
 
 export default Show
+const BackHomeWrapper = styled.div`
+  margin-bottom: 30px;
+  text-align: left;
+  a {
+    padding: 10px;
+    color: ${({ theme }) => theme.mainColors.dark};
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+const ShowPageWrapper = styled.div`
+  margin: auto;
+  @media only screen and (min-width: 768px) {
+    max-width: 700px;
+  }
+  @media only screen and (min-width: 992px) {
+    max-width: 900px;
+  }
+`;
+
+const InfoBlock = styled.div`
+  margin-bottom: 40px;
+  h2 {
+    margin: 0;
+    margin-bottom: 30px;
+    font-size: 22px;
+  }
+`;
