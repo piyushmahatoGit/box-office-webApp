@@ -1,16 +1,16 @@
 import styled from "styled-components"
 
 export default function AppTitle(props) {
-    const {
-        title = "Box Office",
-        paragraph = "Are you looking for a movie or an actor?"
-    } = props;
-    return (
-        <TitleWrapper>
-            <h1>{title}</h1>
-            <p>{paragraph}</p>
-        </TitleWrapper>
-    )
+  const {
+    title = "Box Office",
+    paragraph = "Are you looking for a movie or an actor?"
+  } = props;
+  return (
+    <TitleWrapper>
+      <h1>{title}</h1>
+      <p>{paragraph}</p>
+    </TitleWrapper>
+  )
 }
 
 const TitleWrapper = styled.div`

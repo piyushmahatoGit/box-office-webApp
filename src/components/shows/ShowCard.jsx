@@ -25,7 +25,7 @@ const ShowCard = ({ name, image, id, summary, starmeClick, isStarred }) => {
   return (
     <SearchCard>
       <SearchImgWrapper>
-        <img src={image} />
+        <img src={image} alt="image" />
       </SearchImgWrapper>
       <h1>{name}</h1>
       <p>{summaryStripped}</p>

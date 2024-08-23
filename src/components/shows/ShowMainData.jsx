@@ -1,31 +1,31 @@
 import styled from "styled-components";
 import { StarIcon } from "../common/StarIcon";
 const ShowMainData = ({ image, name, rating, summary, genres }) => {
-    return (
-        <MainDataWrapper>
-            <div className="img-wrap">
-                <img src={image} />
-            </div>
-            <DataSection>
-                <Headline>
-                    <h1>{name}</h1>
-                    <div>
-                        <StarIcon active />
-                        <span>{rating || "N/A"}</span>
-                    </div>
-                </Headline>
+  return (
+    <MainDataWrapper>
+      <div className="img-wrap">
+        <img src={image} alt="image" />
+      </div>
+      <DataSection>
+        <Headline>
+          <h1>{name}</h1>
+          <div>
+            <StarIcon active />
+            <span>{rating || "N/A"}</span>
+          </div>
+        </Headline>
 
-                <Summary dangerouslySetInnerHTML={
-                    { __html: summary }
-                } />
-                <div>
-                    Geners:
-                    <Genres>
-                        {genres.map((genre) => <span key={genre}>{genre} </span>)}
-                    </Genres>
-                </div>
-            </DataSection>
-        </MainDataWrapper>)
+        <Summary dangerouslySetInnerHTML={
+          { __html: summary }
+        } />
+        <div>
+          Geners:
+          <Genres>
+            {genres.map((genre) => <span key={genre}>{genre} </span>)}
+          </Genres>
+        </div>
+      </DataSection>
+    </MainDataWrapper>)
 }
 
 export default ShowMainData;

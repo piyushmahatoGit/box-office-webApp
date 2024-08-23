@@ -26,13 +26,14 @@ const ShowGrid = ({ apiData }) => {
                     key={data.show.id}
                     id={data.show.id}
                     name={data.show.name}
-                    image={data.show.image ? data.show.image.medium : "not found"}
+                    image={data.show.image ? data.show.image.original : "/broken-image.png"}
                     summary={data.show.summary}
                     starmeClick={starmeClick}
                     isStarred={starredShows.includes(data.show.id)}
                 />)
             }
         </FlexGrid>
+
     );
 }
 

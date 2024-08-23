@@ -28,56 +28,56 @@ import { TextCenter } from '../components/common/TextCenter';
 // }
 
 const Show = () => {
-    const { showId } = useParams();
-    // const { showData, showError } = useShowById(showId)
-    const { data: showData, error: showError } = useQuery({
-        queryKey: ['show', showId],
-        queryFn: () => getShowById(showId)
-    });
+  const { showId } = useParams();
+  // const { showData, showError } = useShowById(showId)
+  const { data: showData, error: showError } = useQuery({
+    queryKey: ['show', showId],
+    queryFn: () => getShowById(showId)
+  });
 
 
-    if (showError) {
-        return <div>There is an error: {showError}</div>
-    }
+  if (showError) {
+    return <div>There is an error: {showError}</div>
+  }
 
-    if (showData) {
-        return (
-            <ShowPageWrapper>
-                <BackHomeWrapper>
-                    <Link to="/">Go Back</Link>
-                </BackHomeWrapper>
-                <ShowMainData
-                    image={showData.image ? showData.image.original : "No image found"}
-                    name={showData.name}
-                    language={showData.language}
-                    rating={showData.rating.average}
-                    summary={showData.summary}
-                    genres={showData.genres}
-                />
-                <InfoBlock>
-                    <h2>Details</h2>
-                    <Details
-                        status={showData.status}
-                        premiered={showData.premiered}
-                        network={showData.network}
-                    />
-                </InfoBlock>
+  if (showData) {
+    return (
+      <ShowPageWrapper>
+        <BackHomeWrapper>
+          <Link to="/">Go Back</Link>
+        </BackHomeWrapper>
+        <ShowMainData
+          image={showData.image ? showData.image.original : '/broken-image.png'}
+          name={showData.name}
+          language={showData.language}
+          rating={showData.rating.average}
+          summary={showData.summary}
+          genres={showData.genres}
+        />
+        <InfoBlock>
+          <h2>Details</h2>
+          <Details
+            status={showData.status}
+            premiered={showData.premiered}
+            network={showData.network}
+          />
+        </InfoBlock>
 
-                <InfoBlock>
-                    <h2>Seasons</h2>
-                    <Seasons
-                        seasons={showData._embedded.seasons} />
-                </InfoBlock>
+        <InfoBlock>
+          <h2>Seasons</h2>
+          <Seasons
+            seasons={showData._embedded.seasons} />
+        </InfoBlock>
 
-                <InfoBlock>
-                    <h2>Cast</h2>
-                    <Cast cast={showData._embedded.cast} />
-                </InfoBlock>
+        <InfoBlock>
+          <h2>Cast</h2>
+          <Cast cast={showData._embedded.cast} />
+        </InfoBlock>
 
-            </ShowPageWrapper>)
-    }
+      </ShowPageWrapper>)
+  }
 
-    return <TextCenter>Loading... </TextCenter>
+  return <TextCenter>Loading... </TextCenter>
 }
 
 export default Show

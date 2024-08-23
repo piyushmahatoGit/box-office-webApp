@@ -26,6 +26,7 @@ function App() {
             <Route path="*" element={<div>Page not found</div>} />
 
 
+
             {/* <Route path="/" element={<App />}>
           <Route index element={<Home />} />
           <Route path="teams" element={<Teams />}>
