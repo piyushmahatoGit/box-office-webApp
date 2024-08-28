@@ -5,75 +5,74 @@ import styled from "styled-components";
 
 const SearchForm = ({ onSearch }) => {
 
-    const [searchStr, setSearchStr] = useSearchStr();
-    const [searchOption, setSearchOption] = useState("shows");
+  const [searchStr, setSearchStr] = useSearchStr();
+  const [searchOption, setSearchOption] = useState("shows");
 
-    const onInputChange = (event) => {
-        setSearchStr(event.target.value)
+  const onInputChange = (event) => {
+    setSearchStr(event.target.value)
+  }
+
+  const onRadioChange = (event) => {
+    setSearchOption(event.target.value);
+  }
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+    const options = {
+      searchStr: searchStr,
+      searchOption: searchOption
     }
+    onSearch(options);
+  }
 
-    const onRadioChange = (event) => {
-        setSearchOption(event.target.value);
-    }
+  return (
+    <div>
+      <form onSubmit={onSubmit}>
+        <SearchInput
+          placeholder="type here..."
+          type="text"
+          onChange={onInputChange}
+          value={searchStr}
+        />
 
-    const onSubmit = (event) => {
-        event.preventDefault();
-        const options = {
-            searchStr: searchStr,
-            searchOption: searchOption
-        }
-        onSearch(options);
-    }
+        <RadiosWrapper>
+          <CustomRadio
+            label="Shows"
+            type="radio"
+            name="search-option"
+            value="shows"
+            checked={searchOption === 'shows'}
+            onChange={onRadioChange}
+          />
 
-    return (
-        <div>
-            <form onSubmit={onSubmit}>
-                <SearchInput
-                    placeholder="type here..."
-                    type="text"
-                    onChange={onInputChange}
-                    value={searchStr}
-                />
-
-                <RadiosWrapper>
-                    <CustomRadio
-                        label="Shows"
-                        type="radio"
-                        name="search-option"
-                        value="shows"
-                        checked={searchOption === 'shows'}
-                        onChange={onRadioChange}
-                    />
-
-                    <CustomRadio
-                        label="Actors"
-                        type="radio"
-                        name="search-option"
-                        value="actors"
-                        checked={searchOption === 'actors'}
-                        onChange={onRadioChange}
-                    />
-                </RadiosWrapper>
-                <SearchButtonWrapper>
-                    <button type="submit">Search</button>
-                </SearchButtonWrapper>
-            </form>
-        </div>)
+          <CustomRadio
+            label="Actors"
+            type="radio"
+            name="search-option"
+            value="actors"
+            checked={searchOption === 'actors'}
+            onChange={onRadioChange}
+          />
+        </RadiosWrapper>
+        <SearchButtonWrapper>
+          <button type="submit">Search</button>
+        </SearchButtonWrapper>
+      </form>
+    </div>)
 }
 
 export default SearchForm;
 
 const SearchInput = styled.input`
   display: block;
-  font-family: 'Roboto', sans-serif;
-  width: 200px;
+  font-family: 'Arial', sans-serif;
+  width: 300px;
   margin: auto;
   outline: none;
-  padding: 13px 15px;
-  border: 1px solid #dbdbdb;
-  box-shadow: 0px 0px 10px 0px rgba(219, 219, 219, 0.5);
+  padding: 7px 15px;
+  border: 1px solid black;
   font-size: 14px;
-  border-radius: 12px;
+  border-radius: 30px;
   color: #8d8d8d;
   &::placeholder {
     font-weight: 300;
